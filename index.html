@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Jogo do Amor - Julia</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff0f5;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #e91e63;
+    }
+    .hearts {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .heart {
+      font-size: 48px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .heart:hover {
+      transform: scale(1.2);
+    }
+    #result {
+      margin-top: 40px;
+      font-size: 24px;
+      color: #e91e63;
+    }
+    #finalImage {
+      margin-top: 20px;
+      display: none;
+      max-width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Encontre o coração da Julia 💖</h1>
+  <p>Clique em um dos corações para descobrir qual é o verdadeiro!</p>
+
+  <div class="hearts" id="heartsContainer"></div>
+
+  <div id="result"></div>
+  <img id="finalImage" src="Screenshot_20250511_180917_CapCut.jpg" alt="Foto do amor verdadeiro">
+
+  <script>
+    const heartsContainer = document.getElementById("heartsContainer");
+    const result = document.getElementById("result");
+    const finalImage = document.getElementById("finalImage");
+
+    const totalHearts = 12;
+    const winningIndex = Math.floor(Math.random() * totalHearts);
+
+    for (let i = 0; i < totalHearts; i++) {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.textContent = "❤️";
+      heart.addEventListener("click", () => {
+        if (i === winningIndex) {
+          result.textContent = "Parabéns, você ganhou o coração da Julia 💘";
+          finalImage.style.display = "block";
+        } else {
+          result.textContent = "Esse não era o coração certo... tente de novo!";
+        }
+      });
+      heartsContainer.appendChild(heart);
+    }
+  </script>
+
+</body>
+</html>
